@@ -12,6 +12,7 @@ class UserController extends Controller
     {
         return User::get();
     }
+    
 
     public function show($id)
     {
