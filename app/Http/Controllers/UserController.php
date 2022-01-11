@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,9 +16,9 @@ class UserController extends Controller
     }
 
 
-    public function show($id)
+    public function show(User $user)
     {
-        return User::where('id', $id)->first();
+        return $user;
     }
 
     public function create()
@@ -42,30 +43,31 @@ class UserController extends Controller
 
     }
 
-    public function update(Request $req)
+    public function edit(User $user)
     {
-        $data = User::find($req->id);
-        $data->name = $req->name;
-        $data->email = $req->email;
-        $data->save();
-        
-        return redirect('/users/create')
-            ->with('dalete', 'User successfully updated.');
+        return view('users.edit', [
+            'user' => $user
+        ]);
     }
 
-    public function destroy($id)
+    public function update(User $user, UserUpdateRequest $request)
     {
-        User::where('id', $id)->delete();
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        $user->save();
+
+        return redirect('/users/create')
+            ->with('delete', 'User successfully updated.');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
 
         return redirect()
             ->back()
             ->with('delete', 'User successfully deleted.');
-    }
-
-    public function edit($id)
-    {
-        $data = User::find($id);
-        return view('users.edit', ['data'=>$data]);
     }
 
 }

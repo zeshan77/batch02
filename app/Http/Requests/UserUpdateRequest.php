@@ -3,9 +3,11 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UserCreateRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -15,8 +17,11 @@ class UserCreateRequest extends FormRequest
     {
         return [
             'name' => 'min:3|max:50',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:3|max:8|alpha',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($this->route('user')),
+            ],
         ];
     }
 }

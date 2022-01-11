@@ -22,8 +22,11 @@ Route::get('/', function () {
 Route::get('/welcome', [WelcomeController::class, 'index']);
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::post('/edit_user', [UserController::class, 'update'])->name('users.update');
-Route::get('/users/{id}/delete', [UserController::class, 'destroy'])->name('users.destroy');
-Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+Route::get('/users/{user}/delete', [UserController::class, 'destroy'])->name('users.destroy');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+
+// Addresses
+//Route::get('/users/{user}/addresses/create', );

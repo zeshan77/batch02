@@ -12,14 +12,13 @@
     <div class="flex justify-center items-center m-16">
 
         <div class="bg-white rounded-md shadow-md p-16 w-96">
-            <form action="/edit_user" method="post">
+            <form action="/users/{{ $user->id }}" method="post">
+                @method('put')
                 @csrf
 
                 <div class="flex justify-center">
                     <h1 class="font-bold text-xl py-5">Edit User</h1>
                 </div>
-
-
                 <hr>
 
                 @if(session()->has('message'))
@@ -28,23 +27,11 @@
                     </div>
                 @endif
 
-{{--                @if($errors->any())--}}
-{{--                    <div class="alert alert-danger">--}}
-{{--                        <ul>--}}
-{{--                            @foreach($errors->all() as $error)--}}
-{{--                                <li>{{ $error }}</li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                @endif--}}
-
-                <input type="text" name="id" value="{{ $data->id }}">
-
                 <div class="py-5">
                     <div class="mb-3">
                         <label for="name" class="font-bold">Name</label>
                         <br>
-                        <input type="text"  name="name" class="w-full rounded-md border-2 px-2 py-2 " id="name" placeholder="Your Name" value="{{ old('name', $data->name) }}">
+                        <input type="text"  name="name" class="w-full rounded-md border-2 px-2 py-2 " id="name" placeholder="Your Name" value="{{ old('name', $user->name) }}">
                         @error('name')
                             <span style="font-size: small; color: indianred;">{{ $message }}</span>
                         @enderror
@@ -52,7 +39,7 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="font-bold">Email address</label>
                         <br>
-                        <input type="email" class="w-full border-2 rounded-md px-2 py-2" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Email" value="{{ old('email', $data->email) }}">
+                        <input type="email" class="w-full border-2 rounded-md px-2 py-2" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Email" value="{{ old('email', $user->email) }}">
                         @error('email')
                             <span style="font-size: small; color: indianred;">{{ $message }}</span>
                         @enderror
