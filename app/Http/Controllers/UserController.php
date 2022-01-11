@@ -42,6 +42,17 @@ class UserController extends Controller
 
     }
 
+    public function update(Request $req)
+    {
+        $data = User::find($req->id);
+        $data->name = $req->name;
+        $data->email = $req->email;
+        $data->save();
+        
+        return redirect('/users/create')
+            ->with('dalete', 'User successfully updated.');
+    }
+
     public function destroy($id)
     {
         User::where('id', $id)->delete();
@@ -51,4 +62,11 @@ class UserController extends Controller
             ->with('delete', 'User successfully deleted.');
     }
 
+    public function edit($id)
+    {
+        $data = User::find($id);
+        return view('users.edit', ['data'=>$data]);
+    }
+
 }
+
