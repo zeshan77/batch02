@@ -18,14 +18,9 @@ class UserAddressController extends Controller
 
      public function create(User $user)
     {
-        $datas = DB::table('users')
-        ->join('addresses', 'users.id', 'addresses.user_id')
-        ->get();
+        $user->load('addresses');
 
-        // echo "<pre>";
-        // print_r($datas);
-        // exit;
-        return view('addresses.create', ['user' => $user, 'datas' => $datas]);
+        return view('addresses.create', ['user' => $user]);
     }
 
     public function store(User $user, AddressCreateRequest $request)
@@ -33,8 +28,7 @@ class UserAddressController extends Controller
 
         $data = $request->validated();
 
-        Address::create([
-            'user_id' => $user->id,
+        $user->addresses()->create([
             'city' => $data['city'],
             'district' => $data['district'],
             'uc' => $data['uc'],
@@ -42,7 +36,7 @@ class UserAddressController extends Controller
 
         return redirect()
             ->back()
-            ->with('messege', 'Address successfully Added.');
+            ->with('message', 'Address successfully Added.');
     }
 
     public function edit(Address $address)
@@ -51,11 +45,6 @@ class UserAddressController extends Controller
             'address' => $address
         ]);
     }
-
-    // public function update(Address $address, Request $request)
-    // {
-
-    // }
 
     public function destroy(Address $address)
     {
