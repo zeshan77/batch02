@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddressCreateRequest;
+use App\Http\Requests\AddressUpdateRequest;
 use App\Http\Requests\UserCreateRequest;
 use App\Models\Address;
 use App\Models\User;
@@ -44,6 +45,21 @@ class UserAddressController extends Controller
         return view('addresses.edit', [
             'address' => $address
         ]);
+    }
+
+    public function update(Address $address, AddressUpdateRequest $request)
+    {
+        $data = $request->validated();
+
+        $address->city = $data['city'];
+        $address->district = $data['district'];
+        $address->uc = $data['uc'];
+
+        $address->save();
+
+        return redirect()
+            ->route('addresses.create', ['user' => $address->user->id])
+            ->with('delete', 'User successfully updated.');
     }
 
     public function destroy(Address $address)

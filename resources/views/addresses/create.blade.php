@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Edit address
+    Address Form
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
             <form action="/users/{{ $user->id }}/addresses" method="post">
                 @csrf
                 <div class="flex justify-center">
-                    <h1 class="font-bold text-xl py-5">Address</h1>
+                    <h1 class="font-bold text-xl py-5 my-1">Address</h1>
                 </div>
 
                 <hr class="mb-2">
@@ -65,10 +65,15 @@
     <div class="bg-white rounded-md shadow-md p-16">
 
         <div class="flex justify-center">
-            <h1 class="font-bold text-xl py-5">User Table</h1>
+            <h1 class="font-bold text-xl py-5">Adresses Table</h1>
         </div>
 
         <hr class="py-2">
+            @if(session()->has('delete'))
+                <div class="p-2 mb-4 bg-green-100 rounded-md shadow-md" role="alert">
+                    {{ session('delete') }}
+                </div>
+            @endif
 
 
         <table>
@@ -109,7 +114,7 @@
 @push('styles')
     <style>
         body {
-            background-color: red !important;
+            
         }
     </style>
 @endpush

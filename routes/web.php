@@ -35,6 +35,7 @@ Route::get('/addresses', [UserAddressController::class, 'index'])->name('address
 
 Route::get('/users/{user}/addresses/create', [UserAddressController::class, 'create'])->name('addresses.create');
 route::post('users/{user}/addresses', [UserAddressController::class, 'store'])->name('addresses.store');
-Route::get('/users/{user}/addresses/edit', [UserAddressController::class, 'edit'])->name('addresses.edit');
-Route::get('/users/{user}/addresses/delete', [UserAddressController::class, 'destroy'])->name('addresses.destroy');
+Route::get('/users/{address}/addresses/edit', [UserAddressController::class, 'edit'])->name('addresses.edit');
+Route::put('/users/{address}/addresses/update', [UserAddressController::class, 'update'])->name('addresses.update');
+Route::get('/users/{address}/addresses/delete', [UserAddressController::class, 'destroy'])->name('addresses.destroy');
 
