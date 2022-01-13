@@ -23,7 +23,8 @@ class UserController extends Controller
 
     public function create()
     {
-        $users = User::get();
+        $users = User::with('roles')->get();
+
         return view('users.create', [
             'users' => $users
         ]);

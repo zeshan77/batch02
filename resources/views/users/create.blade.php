@@ -25,16 +25,6 @@
                     </div>
                 @endif
 
-{{--                @if($errors->any())--}}
-{{--                    <div class="alert alert-danger">--}}
-{{--                        <ul>--}}
-{{--                            @foreach($errors->all() as $error)--}}
-{{--                                <li>{{ $error }}</li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                @endif--}}
-
                 <div class="py-5">
                     <div class="mb-3">
                         <label for="name" class="font-bold">Name</label>
@@ -98,6 +88,7 @@
                         <th class="border-r-2 border-white p-2">S.No</th>
                         <th class="border-r-2 border-white p-2">Name</th>
                         <th class="border-r-2 border-white p-2">Email</th>
+                        <th class="border-r-2 border-white p-2">Roles</th>
                         <th class="p-2">Created On</th>
                         <th class="p-2">Actions</th>
                     </tr>
@@ -108,10 +99,11 @@
                                 <td class="border-2 p-2">{{ $user->id }}</td>
                                 <td class="border-2 p-2">{{ $user->name }}</td>
                                 <td class="border-2 p-2">{{ $user->email }}</td>
+                                <td class="border-2 p-2">{{ $user->roles->implode('name', ', ') }}</td>
                                 <td class="border-2 p-2 ">{{ optional($user->created_at)->diffForHumans() }}</td>
                                 <td class="border-2 p-2">
                                     <a href="/users/{{ $user->id }}/delete">Delete</a> -
-                                    <a href="/users/{{ $user->id }}/edit">Edit</a> - 
+                                    <a href="/users/{{ $user->id }}/edit">Edit</a> -
                                     <a href="/users/{{ $user->id }}/addresses/create">Add Address</a>
                                 </td>
                             </tr>
@@ -130,7 +122,7 @@
 @push('styles')
     <style>
         body {
-            
+
         }
     </style>
 @endpush

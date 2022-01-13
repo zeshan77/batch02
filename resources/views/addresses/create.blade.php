@@ -111,12 +111,3 @@
 @endsection
 
 
-@push('styles')
-    <style>
-        body {
-            
-        }
-    </style>
-@endpush
-
-
