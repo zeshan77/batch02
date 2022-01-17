@@ -9,7 +9,7 @@
     <div class="flex justify-center items-center m-16">
 
         <div class="bg-white rounded-md shadow-md p-16 w-96">
-            <form action="/addresses/{{ $address->id }}" method="post">
+            <form action="/users/{{ $address->id }}/addresses/update" method="post">
                 @method('put')
                 @csrf
 
@@ -27,8 +27,7 @@
                 <div class="py-5">
                     <div class="mb-3">
                         <label for="name" class="font-bold">City</label>
-                        <input type="text"  name="city" class="w-full rounded-md border-2 px-2 py-2 " 
-                        id="city" placeholder="Your City" value="{{ old('city', $address->city) }}">
+                        <input type="text"  name="city" class="w-full rounded-md border-2 px-2 py-2 " id="city" placeholder="Your City" value="{{ old('city', $address->city) }}">
                         @error('city')
                             <span style="font-size: small; color: indianred;">{{ $message }}</span>
                         @enderror

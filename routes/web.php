@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserAddressController;
+use App\Http\Controllers\UserRoleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 
@@ -34,8 +35,12 @@ Route::get('/users/{user}/delete', [UserController::class, 'destroy'])->name('us
 Route::get('/addresses', [UserAddressController::class, 'index'])->name('addresses.index');
 
 Route::get('/users/{user}/addresses/create', [UserAddressController::class, 'create'])->name('addresses.create');
-route::post('users/{user}/addresses', [UserAddressController::class, 'store'])->name('addresses.store');
-Route::get('/users/{address}/addresses/edit', [UserAddressController::class, 'edit'])->name('addresses.edit');
-Route::put('/users/{address}/addresses/update', [UserAddressController::class, 'update'])->name('addresses.update');
-Route::get('/users/{address}/addresses/delete', [UserAddressController::class, 'destroy'])->name('addresses.destroy');
+Route::post('users/{user}/addresses', [UserAddressController::class, 'store'])->name('addresses.store');
+Route::get('/addresses/{address}/edit', [UserAddressController::class, 'edit'])->name('addresses.edit');
+Route::put('/addresses/{address}', [UserAddressController::class, 'update'])->name('addresses.update');
+Route::get('addresses/{address}/delete', [UserAddressController::class, 'destroy'])->name('addresses.destroy');
 
+Route::get('/roles', [UserRoleController::class, 'index'])->name('roles.index');
+
+Route::get('/users/{user}/roles/attach', [UserRoleController::class, 'attach'])->name('roles.attach');
+Route::post('users/{user}/roles', [UserRoleController::class, 'store'])->name('roles.store');

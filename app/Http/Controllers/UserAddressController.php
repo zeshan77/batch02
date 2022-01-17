@@ -8,7 +8,6 @@ use App\Http\Requests\UserCreateRequest;
 use App\Models\Address;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class UserAddressController extends Controller
 {
@@ -21,14 +20,15 @@ class UserAddressController extends Controller
     {
         $user->load('addresses');
 
-        return view('addresses.create', ['user' => $user]);
+        return view('addresses.create', [
+            'user' => $user
+        ]);
     }
 
     public function store(User $user, AddressCreateRequest $request)
     {
-
         $data = $request->validated();
-
+        
         $user->addresses()->create([
             'city' => $data['city'],
             'district' => $data['district'],
@@ -58,7 +58,9 @@ class UserAddressController extends Controller
         $address->save();
 
         return redirect()
-            ->route('addresses.create', ['user' => $address->user->id])
+            ->route('addresses.create', [
+                'user' => $address->user->id
+                ])
             ->with('delete', 'User successfully updated.');
     }
 

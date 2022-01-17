@@ -96,8 +96,8 @@
                             <td class="border-2 p-2">{{ $address->city." ".$address->district." ".$address->uc }}</td>
                             <td class="border-2 p-2 ">{{ optional($address->created_at)->diffForHumans() }}</td>
                             <td class="border-2 p-2">
-                                <a href="/users/{{ $address->id }}/addresses/delete">Delete</a> -
-                                <a href="/users/{{ $address->id }}/addresses/edit">Edit</a> -
+                                <a href="/addresses/{{ $address->id }}/delete">Delete</a> -
+                                <a href="/addresses/{{ $address->id }}/edit">Edit</a> -
                             </td>
                         </tr>
                     @endforeach

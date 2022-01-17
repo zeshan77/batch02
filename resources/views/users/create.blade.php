@@ -89,7 +89,7 @@
                         <th class="border-r-2 border-white p-2">Name</th>
                         <th class="border-r-2 border-white p-2">Email</th>
                         <th class="border-r-2 border-white p-2">Roles</th>
-                        <th class="p-2">Created On</th>
+                        <th class="border-r-2 border-white p-2">Created On</th>
                         <th class="p-2">Actions</th>
                     </tr>
                 </thead>
@@ -104,7 +104,8 @@
                                 <td class="border-2 p-2">
                                     <a href="/users/{{ $user->id }}/delete">Delete</a> -
                                     <a href="/users/{{ $user->id }}/edit">Edit</a> -
-                                    <a href="/users/{{ $user->id }}/addresses/create">Add Address</a>
+                                    <a href="/users/{{ $user->id }}/addresses/create">Add Address</a> -
+                                    <a href="/users/{{ $user->id }}/roles/attach">Add Role</a>
                                 </td>
                             </tr>
                         @endforeach
