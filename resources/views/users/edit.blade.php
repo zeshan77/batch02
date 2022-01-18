@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.my')
 
 @section('title')
     Edit User
@@ -64,7 +64,7 @@
 @push('styles')
     <style>
         body {
-            
+
         }
     </style>
 @endpush

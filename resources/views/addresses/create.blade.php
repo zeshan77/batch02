@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.my')
 
 @section('title')
     Address Form

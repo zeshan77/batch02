@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.my')
 
 @section('title')
     Edit Address
@@ -27,7 +27,7 @@
                 <div class="py-5">
                     <div class="mb-3">
                         <label for="name" class="font-bold">City</label>
-                        <input type="text"  name="city" class="w-full rounded-md border-2 px-2 py-2 " 
+                        <input type="text"  name="city" class="w-full rounded-md border-2 px-2 py-2 "
                         id="city" placeholder="Your City" value="{{ old('city', $address->city) }}">
                         @error('city')
                             <span style="font-size: small; color: indianred;">{{ $message }}</span>
@@ -70,7 +70,7 @@
 @push('styles')
     <style>
         body {
-            
+
         }
     </style>
 @endpush

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.my')
 
 @section('title')
     Edit Address
@@ -69,7 +69,7 @@
 @push('styles')
     <style>
         body {
-            
+
         }
     </style>
 @endpush

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.my')
 
 @section('title')
     Role Form
@@ -36,13 +36,10 @@
                         @foreach($roles as $role)
                             <option value="{{ $role->id }}" {{ $user->roles->contains('id', $role->id) ? 'selected' : ''}} >
                                 {{ $role->name }}
-                            </option>           
+                            </option>
                         @endforeach
                     </select>
                 </div>
-                    @error('roles')
-                        <span style="font-size: small; color: indianred;">{{ $message }}</span>
-                    @enderror
                 <div class="flex justify-center">
                     <div class="border-2 border-gray-200 rounded-md shahdow-md py-2 px-2 text-gray-600">
                         <button type="submit" class="font-bold">Submit</button>
